@@ -1,5 +1,5 @@
 import fastify from "./fastify";
-import connectDatabase from "./config/database";
+import DatabaseSystem from "./config/database";
 
 const startServer = () => {
     try {
@@ -9,7 +9,7 @@ const startServer = () => {
             console.log(`Running at ${address}`);
         });
 
-        connectDatabase();
+        DatabaseSystem.connectDatabase("load", "save_2025-03-30-652.tm");
     } catch (error) {
         console.error(error);
         process.exit(1);
