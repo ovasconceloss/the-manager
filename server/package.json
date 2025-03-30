@@ -15,12 +15,15 @@
   "license": "GPLv3",
   "packageManager": "pnpm@10.4.1",
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
     "@types/node": "^22.13.14",
+    "better-sqlite3": "^11.9.1",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
+      "better-sqlite3",
       "esbuild"
     ]
   },
