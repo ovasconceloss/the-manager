@@ -4,7 +4,7 @@
   "description": "A simple football management game.",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch src/server.ts"
+    "dev": "node --env-file=.env --import=tsx --watch ./src/index.ts"
   },
   "keywords": [
     "Node",
@@ -23,5 +23,8 @@
     "onlyBuiltDependencies": [
       "esbuild"
     ]
+  },
+  "dependencies": {
+    "fastify": "^5.2.2"
   }
 }
