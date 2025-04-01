@@ -39,12 +39,14 @@ class DatabaseSystem {
         }
     }
 
-    static connectDatabase = (action: "load" | "create", fileName?: string): Database.Database => {
+    static connectDatabase = (action: "load" | "create", fileName?: string): { database: Database.Database; isNew: boolean } => {
         try {
             if (action === "load") {
-                return this.loadDatabase(fileName!);
+                const database = this.loadDatabase(fileName!);
+                return { database, isNew: false };
             } else if (action === "create") {
-                return this.createDatabase();
+                const database = this.createDatabase();
+                return { database, isNew: true };
             } else {
                 throw new Error("Invalid action. Use 'load' or 'create'.");
             }
