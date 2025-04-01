@@ -42,10 +42,12 @@ const Menu: React.FC = () => {
             bg-[#1E1E26] text-white border border-[#1E1E26] rounded-md hover:bg-[#67159C]">
               Load Game
             </Button>
-            <Button className="w-full p-5 flex justify-start uppercase text-lg font-semibold cursor-pointer 
-            bg-[#1E1E26] text-white border border-[#1E1E26] rounded-md hover:bg-[#67159C]">
-              Start a New Game
-            </Button>
+            <Link to="/club/choose">
+              <Button className="w-full p-5 flex justify-start uppercase text-lg font-semibold cursor-pointer 
+              bg-[#1E1E26] text-white border border-[#1E1E26] rounded-md hover:bg-[#67159C]">
+                Start a New Game
+              </Button>
+            </Link>
           </div>
         </article>
       </section>
