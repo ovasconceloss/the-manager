@@ -1,13 +1,13 @@
 import fastify from "./fastify";
-import DatabaseSystem from "./config/database";
 import GameImagesGraphics from "./config/graphics";
+import StaticDatabase from "./config/staticDatabase";
 
-const initializeDatabase = async () => {
+const initializeStaticDatabase = async () => {
   try {
-    const staticDatabaseExist = await DatabaseSystem.checkStaticDatabaseExists();
+    const staticDatabaseExist = await StaticDatabase.checkStaticDatabaseExists();
 
     if (!staticDatabaseExist) {
-      const staticDatabase = DatabaseSystem.createStaticDatabase();
+      const staticDatabase = StaticDatabase.createStaticDatabase();
       await GameImagesGraphics.insertImagesAutomatically(staticDatabase);
     }
   } catch (error) {
@@ -24,7 +24,7 @@ const startServer = async () => {
       console.log(`Running at ${address}`);
     });
 
-    await initializeDatabase();
+    await initializeStaticDatabase();
   } catch (error) {
     console.error(error);
     process.exit(1);
