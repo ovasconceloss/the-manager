@@ -58,12 +58,6 @@ class StaticDatabase {
 
         return this.instance;
     }
-
-    static getClubs() {
-        const databaseInstance = this.connectDatabase();
-        const databaseStatement = databaseInstance.prepare("SELECT id, name, country, logo FROM clubs");
-        return databaseStatement.all();
-    }
 }
 
 export default StaticDatabase;
