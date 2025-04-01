@@ -5,6 +5,13 @@ import SaveSystem from "./saves";
 import Database from "better-sqlite3";
 
 class DatabaseSystem {
+    static async checkStaticDatabaseExists() {
+        const userConfigPath = process.env.APPDATA || path.join(os.homedir());
+        const databasePath = path.resolve(userConfigPath, "The Manager 2025", "TM2025_STATIC.db");
+
+        return fs.existsSync(databasePath);
+    }
+
     static createStaticDatabase = (): Database.Database => {
         const userConfigPath = process.env.APPDATA || path.join(os.homedir());
         const databasePath = path.resolve(userConfigPath, "The Manager 2025", "TM2025_STATIC.db");
