@@ -20,7 +20,8 @@ class GameImagesGraphics {
       const clubId = parseInt(file.replace(".png", ""), 10);
       if (isNaN(clubId)) continue;
 
-      const filePath = `graphics/logos/${nationName}/${file}`;
+      const filePath = path.resolve(folderPath, file);
+
       const clubExists = databaseInstance.database
         .prepare("SELECT COUNT(*) as count FROM club WHERE id = ?")
         .get(clubId) as { count: number };
@@ -46,9 +47,8 @@ class GameImagesGraphics {
       const nationId = parseInt(file.replace(".png", ""), 10);
       if (isNaN(nationId)) continue;
 
-      const filePath = `graphics/logos/nations/${
-        columnName === "image_federation" ? "federations" : "flags"
-      }/${file}`;
+      const filePath = path.resolve(folderPath, file);
+      
       const nationExists = databaseInstance.database
         .prepare("SELECT COUNT(*) as count FROM nation WHERE id = ?")
         .get(nationId) as { count: number };
