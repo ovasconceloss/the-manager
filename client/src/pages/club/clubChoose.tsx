@@ -1,6 +1,6 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import React, { useEffect, useState } from "react";
 import { MoveLeft, ChevronsRight } from "lucide-react";
 import {
   Select,
@@ -9,30 +9,26 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useFetch } from "@/hooks/useFetch";
 import { ClubCard } from "./components/ClubCard";
 
-const ChooseClub: React.FC = () => {
-  const [selectedClub, setSelectedClub] = useState<string | null>(null);
+interface Club {
+  id: number;
+  name: string;
+  nation_id: number;
+  image_logo: string;
+}
 
-  const clubs = [
-    "Cracovia",
-    "Górnik",
-    "Jagiellonia",
-    "KGHM Zagłębie",
-    "Korona",
-    "Lech",
-    "Legia",
-    "ŁKS Łódź",
-    "Piast",
-    "Pogoń",
-    "Puszcza",
-    "Radomiak",
-    "Raków",
-    "Śląsk",
-    "Stal Mielec",
-    "Warta Poznań",
-    "Widzew",
-  ];
+const ChooseClub: React.FC = () => {
+  const [selectedNation, setSelectedNation] = useState("England");
+  const [apiUrl, setApiUrl] = useState(`static/club/all/${selectedNation}`);
+
+  useEffect(() => {
+    setApiUrl(`static/club/all/${selectedNation}`);
+  }, [selectedNation]);
+
+  const { data: clubs } = useFetch<Club[]>(apiUrl);
+  const [selectedClub, setSelectedClub] = useState<string | null>(null);
 
   return (
     <main className="relative h-screen w-screen bg-[#1E1E26] text-white">
@@ -51,25 +47,27 @@ const ChooseClub: React.FC = () => {
       </article>
       <section className="flex items-center justify-between px-8 py-4 bg-[#19181F] border-b border-[#2A2A35]">
         <div className="flex items-center gap-4">
-          <Select defaultValue="England">
+          <Select defaultValue="England" value={selectedNation} onValueChange={setSelectedNation}>
             <SelectTrigger className="cursor-pointer w-64 border border-[#19181F] bg-[#2A2A35] 
             text-white px-4 py-2 rounded-md hover:bg-[#19181F] hover:border-[#2A2A35]">
               <SelectValue placeholder="Nation" />
             </SelectTrigger>
             <SelectContent className="bg-[#2A2A35]">
               <SelectItem value="England" className="focus:bg-transparent focus:text-white text-white cursor-pointer">England</SelectItem>
+              <SelectItem value="Spain" className="focus:bg-transparent focus:text-white text-white cursor-pointer">Spain</SelectItem>
             </SelectContent>
           </Select>
         </div>
       </section>
       <section className="p-8">
         <div className="grid grid-cols-5 gap-4">
-          {clubs.map((club, index) => (
+          {clubs?.map((club, index) => (
             <ClubCard
               key={index}
-              name={club}
-              isSelected={club === selectedClub}
-              onClick={() => setSelectedClub(club)}
+              name={club.name}
+              image_logo={club.image_logo}
+              isSelected={club.name === selectedClub}
+              onClick={() => setSelectedClub(club.name)}
             />
           ))}
         </div>
