@@ -49,13 +49,58 @@ const useManagerForm = () => {
     alert("Manager created successfully!");
   };
 
-  const isFormComplete = () => {
+  const isFormComplete = (tab: string) => {
     const { personalDetails, specialization } = managerData;
-    const personalComplete = Object.values(personalDetails).every((value) => value.trim() !== "");
-    const specializationComplete = specialization.trim() !== "";
-    const attributesComplete = usedPoints === totalPoints;
-
-    return personalComplete && specializationComplete && attributesComplete;
+  
+    if (tab === "personal") {
+      return (
+        personalDetails.name?.trim() &&
+        personalDetails.surname?.trim() &&
+        personalDetails.nationality?.trim() &&
+        personalDetails.dateOfBirth?.trim() &&
+        personalDetails.gender?.trim()
+      );
+    }
+  
+    if (tab === "specialization") {
+      const personalDetailsComplete =
+        personalDetails.name?.trim() &&
+        personalDetails.surname?.trim() &&
+        personalDetails.nationality?.trim() &&
+        personalDetails.dateOfBirth?.trim() &&
+        personalDetails.gender?.trim();
+  
+      return personalDetailsComplete && !!specialization?.trim();
+    }
+  
+    if (tab === "attributes") {
+      const personalDetailsComplete =
+        personalDetails.name?.trim() &&
+        personalDetails.surname?.trim() &&
+        personalDetails.nationality?.trim() &&
+        personalDetails.dateOfBirth?.trim() &&
+        personalDetails.gender?.trim();
+  
+      const specializationComplete = !!specialization?.trim();
+  
+      return personalDetailsComplete && specializationComplete && remainingPoints === 0;
+    }
+  
+    if (tab === "summary") {
+      const personalDetailsComplete =
+        personalDetails.name?.trim() &&
+        personalDetails.surname?.trim() &&
+        personalDetails.nationality?.trim() &&
+        personalDetails.dateOfBirth?.trim() &&
+        personalDetails.gender?.trim();
+  
+      const specializationComplete = !!specialization?.trim();
+      const attributesComplete = remainingPoints === 0;
+  
+      return personalDetailsComplete && specializationComplete && attributesComplete;
+    }
+  
+    return false;
   };
 
   return {

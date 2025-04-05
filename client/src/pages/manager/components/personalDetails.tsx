@@ -8,14 +8,14 @@ interface PersonalDetailsFormProps {
 }
 
 const PersonalDetailsForm: React.FC<PersonalDetailsFormProps> = ({ managerData, setManagerData }) => {
-  const handlePersonalDetailsChange = (key: string, value: string) => {
-    setManagerData((prev: any) => ({
-      ...prev,
-      personalDetails: { ...prev.personalDetails, [key]: value },
-    }));
-  };
-
-  return (
+    const handlePersonalDetailsChange = (key: string, value: string) => {
+        setManagerData((prev: any) => ({
+            ...prev,
+            personalDetails: { ...prev.personalDetails, [key]: value },
+        }));
+    };
+    
+    return (
     <>
     <form className="mt-5 space-y-6">
         <div className="grid grid-cols-2 gap-4">
