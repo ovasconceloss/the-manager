@@ -19,3 +19,25 @@ INSERT INTO stadium (id, city, name, capacity, construction_year) VALUES
 (18, 'London', 'Tottenham Hotspur Stadium', 62850, '2019'),
 (19, 'London', 'London Stadium', 68013, '2011'),
 (20, 'Wolverhampton', 'Molineux Stadium', 32050, '1889');
+
+INSERT INTO stadium (id, city, name, capacity, construction_year) VALUES
+(21, 'Vitoria-Gasteiz', 'Estadio de Mendizorroza', 19840, 1924),
+(22, 'Bilbao', 'San Mamés', 53331, 2013),
+(23, 'Madrid', 'Metropolitano', 70460, 1994),
+(24, 'Barcelona', 'Lluís Companys', 55926, 1927),
+(25, 'Vigo', 'Estadio Municipal de Balaídos', 31800, 1928),
+(26, 'Cornellà de Llobregat', 'RCDE Stadium', 40000, 2009),
+(27, 'Getafe', 'Coliseum Alfonso Pérez', 17500, 1998),
+(28, 'Girona', 'Estadi Municipal de Montilivi', 14286, 1970),
+(29, 'Las Palmas de Gran Canaria', 'Estadio de Gran Canaria', 32392, 2003),
+(30, 'Leganés', 'Municipal de Butarque', 11454, 1998),
+(31, 'Palma de Mallorca', 'Estadi Mallorca Son Moix', 23142, 1999),
+(32, 'Pamplona', 'Estadio El Sadar', 19800, 1967),
+(33, 'Madrid', 'Campo de Fútbol de Vallecas', 14505, 1972),
+(34, 'Sevilha', 'Estadio Benito Villamarín', 60270, 1929),
+(35, 'Madrid', 'Santiago Bernabéu', 78000, 1947),
+(36, 'San Sebastián', 'Reale Arena', 39313, 1993),
+(37, 'Sevilha', 'Ramón Sánchez Pizjuán', 42714, 1957),
+(38, 'Valência', 'Estadio de Mestalla', 49430, 1923),
+(39, 'Valladolid', 'Estadio José Zorrilla', 26512, 1982),
+(40, 'Villarreal', 'Estadio de la Cerámica', 23500, 1923);
