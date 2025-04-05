@@ -10,6 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useFetch } from "@/hooks/useFetch";
+import { useProfile } from "@/hooks/useProfile";
 import { ClubCard } from "./components/ClubCard";
 
 interface Club {
@@ -20,15 +21,15 @@ interface Club {
 }
 
 const ChooseClub: React.FC = () => {
+  const { selectedClub, setSelectedClub } = useProfile();
   const [selectedNation, setSelectedNation] = useState("England");
   const [apiUrl, setApiUrl] = useState(`static/club/all/${selectedNation}`);
+
+  const { data: clubs } = useFetch<Club[]>(apiUrl);
 
   useEffect(() => {
     setApiUrl(`static/club/all/${selectedNation}`);
   }, [selectedNation]);
-
-  const { data: clubs } = useFetch<Club[]>(apiUrl);
-  const [selectedClub, setSelectedClub] = useState<string | null>(null);
 
   return (
     <main className="relative h-screen w-screen bg-[#1E1E26] text-white">
