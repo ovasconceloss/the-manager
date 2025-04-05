@@ -11,14 +11,14 @@ export const ClubCard: React.FC<ClubCardProps> = ({ name, image_logo, isSelected
   return (
     <div
       onClick={onClick}
-      className={`flex flex-col items-center justify-center h-20 rounded-lg border cursor-pointer ${
+      className={`transition-all ease-in-out hover:scale-110 flex flex-col items-center justify-center h-[9.6rem] rounded-lg border cursor-pointer ${
         isSelected
           ? "border-[#67159C] bg-[#2A2A35]"
           : "border-[#2A2A35] bg-[#19181F] hover:border-[#67159C]"
       }`}
     >
-      <img src={`${convertFileSrc(image_logo)}`} alt={`${name} logo`} className="w-10 h-10" />
-      <p className="text-sm font-semibold">{name}</p>
+      <img src={`${convertFileSrc(image_logo)}`} alt={`${name} logo`} className="w-16 h-16" />
+      <p className="mt-2 text-md font-semibold">{name}</p>
     </div>
   );
 };
