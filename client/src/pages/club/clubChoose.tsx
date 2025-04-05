@@ -72,18 +72,6 @@ const ChooseClub: React.FC = () => {
           ))}
         </div>
       </section>
-      <footer className="absolute bottom-0 left-0 right-0 px-8 py-4 bg-[#19181F] border-t border-[#2A2A35] flex items-center justify-between">
-        <div className="flex items-center gap-8">
-          <div>
-            <p className="text-sm text-gray-400">Reputation</p>
-            <p className="text-lg font-bold">National</p>
-          </div>
-          <div>
-            <p className="text-sm text-gray-400">Squad Ability</p>
-            <p className="text-lg font-bold">⭐⭐⭐</p>
-          </div>
-        </div>
-      </footer>
     </main>
   );
 };
