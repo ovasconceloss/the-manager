@@ -35,7 +35,7 @@ const CreateManager: React.FC = () => {
         </div>
       </article>
       <div className="mt-10 flex flex-col items-center justify-center">
-        <Card className="w-[70rem] bg-[#19181F] text-white rounded-lg border border-[#2A2A35] flex flex-col">
+        <Card className="w-[70rem] h-[41.5rem] bg-[#19181F] text-white rounded-lg border border-[#2A2A35] flex flex-col">
           <CardHeader>
             <CardTitle className="text-center text-2xl font-bold uppercase tracking-wide">
               Create Your Manager
@@ -43,7 +43,7 @@ const CreateManager: React.FC = () => {
           </CardHeader>
           <CardContent className="flex-1 flex flex-col justify-between">
             <TabsNavigation currentTab={currentTab} setCurrentTab={setCurrentTab} />
-            <div className="flex-1 flex justify-center items-center">
+            <div>
               {currentTab === "personal" && (
                 <PersonalDetailsForm managerData={managerData} setManagerData={setManagerData} />
               )}
@@ -64,7 +64,7 @@ const CreateManager: React.FC = () => {
             <div className="mt-6 flex justify-between">
               {currentTab !== "personal" && (
                 <Button
-                  className="bg-[#67159C] hover:bg-[#4A0E6F] w-32 text-white px-4 py-2 rounded-md"
+                  className="bg-[#67159C] hover:bg-[#4A0E6F] w-32 text-white px-4 py-2 rounded-md cursor-pointer"
                   onClick={handlePreviousTab}
                 >
                   Back
@@ -72,7 +72,7 @@ const CreateManager: React.FC = () => {
               )}
               {currentTab !== "summary" && (
                 <Button
-                  className="bg-[#67159C] hover:bg-[#4A0E6F] w-32 text-white px-4 py-2 rounded-md"
+                  className="bg-[#67159C] hover:bg-[#4A0E6F] w-32 text-white px-4 py-2 rounded-md cursor-pointer"
                   onClick={handleNextTab}
                 >
                   Next
@@ -80,7 +80,7 @@ const CreateManager: React.FC = () => {
               )}
               {currentTab === "summary" && (
                 <Button
-                  className={`bg-[#67159C] hover:bg-[#4A0E6F] w-32 text-white px-4 py-2 rounded-md ${
+                  className={`bg-[#67159C] hover:bg-[#4A0E6F] w-32 text-white px-4 py-2 rounded-md cursor-pointer ${
                     !isFormComplete() ? "opacity-50 cursor-not-allowed" : ""
                   }`}
                   onClick={handleSave}
