@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { MoveLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import useManagerForm from "@/hooks/useManagerForm";
 import AttributesForm from "./components/attributes";
 import TabsNavigation from "./components/tabsNavigation";
 import SpecializationForm from "./components/specializations";
@@ -9,59 +10,17 @@ import PersonalDetailsForm from "./components/personalDetails";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const CreateManager: React.FC = () => {
-  const [managerData, setManagerData] = useState({
-    personalDetails: {
-      name: "",
-      surname: "",
-      dateOfBirth: "",
-      gender: "",
-      nationality: "",
-      placeOfBirth: "",
-    },
-    specialization: "",
-    attributes: {
-      attacking: 10,
-      defending: 10,
-      fitness: 10,
-      tactical: 10,
-      mental: 10,
-      technical: 10,
-      adaptability: 10,
-      determination: 10,
-      discipline: 10,
-      motivating: 10,
-    },
-  });
-
-  const [currentTab, setCurrentTab] = useState("personal");
-
-  const totalPoints = 100;
-  const usedPoints = Object.values(managerData.attributes).reduce((a, b) => a + b, 0);
-  const remainingPoints = totalPoints - usedPoints;
-
-  const handleNextTab = () => {
-    if (currentTab === "personal") setCurrentTab("specialization");
-    else if (currentTab === "specialization") setCurrentTab("attributes");
-  };
-
-  const handlePreviousTab = () => {
-    if (currentTab === "specialization") setCurrentTab("personal");
-    else if (currentTab === "attributes") setCurrentTab("specialization");
-  };
-
-  const handleSave = () => {
-    console.log("Manager Data:", managerData);
-    localStorage.setItem("managerData", JSON.stringify(managerData));
-  };
-
-  const isFormComplete = () => {
-    const { personalDetails, specialization } = managerData;
-    const personalComplete = Object.values(personalDetails).every((value) => value.trim() !== "");
-    const specializationComplete = specialization.trim() !== "";
-    const attributesComplete = usedPoints === totalPoints;
-
-    return personalComplete && specializationComplete && attributesComplete;
-  };
+  const {
+    managerData,
+    setManagerData,
+    setCurrentTab,
+    currentTab,
+    handleNextTab,
+    handlePreviousTab,
+    handleSave,
+    remainingPoints,
+    isFormComplete,
+  } = useManagerForm();
 
   return (
     <main className="relative h-screen w-screen bg-gradient-to-br from-[#1E1E26] to-[#2A2A35] text-white">
@@ -76,47 +35,50 @@ const CreateManager: React.FC = () => {
         </div>
       </article>
       <div className="mt-10 flex flex-col items-center justify-center">
-        <Card className="w-[70rem] bg-[#19181F] text-white rounded-lg border border-[#2A2A35]">
+        <Card className="w-[70rem] bg-[#19181F] text-white rounded-lg border border-[#2A2A35] flex flex-col">
           <CardHeader>
             <CardTitle className="text-center text-2xl font-bold uppercase tracking-wide">
               Create Your Manager
             </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex-1 flex flex-col justify-between">
             <TabsNavigation currentTab={currentTab} setCurrentTab={setCurrentTab} />
-            {currentTab === "personal" && (
-              <PersonalDetailsForm managerData={managerData} setManagerData={setManagerData} />
-            )}
-            {currentTab === "specialization" && (
-              <SpecializationForm managerData={managerData} setManagerData={setManagerData} />
-            )}
-            {currentTab === "attributes" && (
-              <AttributesForm
-                managerData={managerData}
-                setManagerData={setManagerData}
-                remainingPoints={remainingPoints}
-                handleSave={handleSave}
-                isFormComplete={isFormComplete}
-              />
-            )}
+            <div className="flex-1 flex justify-center items-center">
+              {currentTab === "personal" && (
+                <PersonalDetailsForm managerData={managerData} setManagerData={setManagerData} />
+              )}
+              {currentTab === "specialization" && (
+                <SpecializationForm managerData={managerData} setManagerData={setManagerData} />
+              )}
+              {currentTab === "attributes" && (
+                <AttributesForm
+                  managerData={managerData}
+                  setManagerData={setManagerData}
+                  remainingPoints={remainingPoints} handleSave={function (): void {
+                    throw new Error("Function not implemented.");
+                  } } isFormComplete={function (): boolean {
+                    throw new Error("Function not implemented.");
+                  } }                />
+              )}
+            </div>
             <div className="mt-6 flex justify-between">
               {currentTab !== "personal" && (
                 <Button
-                  className="bg-[#67159C] hover:bg-[#4A0E6F] w-32 text-white px-4 py-2 rounded-md cursor-pointer"
+                  className="bg-[#67159C] hover:bg-[#4A0E6F] w-32 text-white px-4 py-2 rounded-md"
                   onClick={handlePreviousTab}
                 >
                   Back
                 </Button>
               )}
-              {currentTab !== "attributes" && (
+              {currentTab !== "summary" && (
                 <Button
-                  className="bg-[#67159C] hover:bg-[#4A0E6F] w-32 text-white px-4 py-2 rounded-md cursor-pointer"
+                  className="bg-[#67159C] hover:bg-[#4A0E6F] w-32 text-white px-4 py-2 rounded-md"
                   onClick={handleNextTab}
                 >
                   Next
                 </Button>
               )}
-              {currentTab === "attributes" && (
+              {currentTab === "summary" && (
                 <Button
                   className={`bg-[#67159C] hover:bg-[#4A0E6F] w-32 text-white px-4 py-2 rounded-md ${
                     !isFormComplete() ? "opacity-50 cursor-not-allowed" : ""
@@ -124,7 +86,7 @@ const CreateManager: React.FC = () => {
                   onClick={handleSave}
                   disabled={!isFormComplete()}
                 >
-                  Save
+                  Confirm
                 </Button>
               )}
             </div>
