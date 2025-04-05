@@ -42,9 +42,11 @@ const ChooseClub: React.FC = () => {
           </Link>
           <h1 className="text-xl font-bold uppercase">Create Career Game</h1>
         </div>
-        <Button className="bg-[#1E1E26] uppercase cursor-pointer hover:bg-[#67159C]">
-          Create Game <ChevronsRight />
-        </Button>
+        <Link to={"/club/create/manager"}>
+          <Button className="bg-[#1E1E26] uppercase cursor-pointer hover:bg-[#67159C]">
+            Continue <ChevronsRight />
+          </Button>
+        </Link>
       </article>
       <section className="flex items-center justify-between px-8 py-4 bg-[#19181F] border-b border-[#2A2A35]">
         <div className="flex items-center gap-4">
@@ -54,8 +56,8 @@ const ChooseClub: React.FC = () => {
               <SelectValue placeholder="Nation" />
             </SelectTrigger>
             <SelectContent className="bg-[#2A2A35]">
-              <SelectItem value="England" className="focus:bg-transparent focus:text-white text-white cursor-pointer">England</SelectItem>
-              <SelectItem value="Spain" className="focus:bg-transparent focus:text-white text-white cursor-pointer">Spain</SelectItem>
+              <SelectItem value="England" className="focus:bg-[#67159C] focus:text-white text-white cursor-pointer">England</SelectItem>
+              <SelectItem value="Spain" className="focus:bg-[#67159C] focus:text-white text-white cursor-pointer">Spain</SelectItem>
             </SelectContent>
           </Select>
         </div>
