@@ -48,9 +48,9 @@ const PersonalDetailsForm: React.FC<PersonalDetailsFormProps> = ({ managerData, 
                         <SelectValue placeholder="Select nationality" />
                     </SelectTrigger>
                     <SelectContent className="bg-[#19181F]">
-                        <SelectItem value="english" className="cursor-pointer focus:bg-[#67159C] focus:text-white text-white">English</SelectItem>
-                        <SelectItem value="spanish" className="cursor-pointer focus:bg-[#67159C] focus:text-white text-white">Spanish</SelectItem>
-                        <SelectItem value="french" className="cursor-pointer focus:bg-[#67159C] focus:text-white text-white">French</SelectItem>
+                        <SelectItem value="English" className="cursor-pointer focus:bg-[#67159C] focus:text-white text-white">English</SelectItem>
+                        <SelectItem value="Spanish" className="cursor-pointer focus:bg-[#67159C] focus:text-white text-white">Spanish</SelectItem>
+                        <SelectItem value="French" className="cursor-pointer focus:bg-[#67159C] focus:text-white text-white">French</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
@@ -61,9 +61,9 @@ const PersonalDetailsForm: React.FC<PersonalDetailsFormProps> = ({ managerData, 
                         <SelectValue placeholder="Select place of birth" />
                     </SelectTrigger>
                     <SelectContent className="bg-[#19181F]">
-                        <SelectItem value="london" className="cursor-pointer focus:bg-[#67159C] focus:text-white text-white">London</SelectItem>
-                        <SelectItem value="paris" className="cursor-pointer focus:bg-[#67159C] focus:text-white text-white">Paris</SelectItem>
-                        <SelectItem value="new-york" className="cursor-pointer focus:bg-[#67159C] focus:text-white text-white">New York</SelectItem>
+                        <SelectItem value="London" className="cursor-pointer focus:bg-[#67159C] focus:text-white text-white">London</SelectItem>
+                        <SelectItem value="Madrid" className="cursor-pointer focus:bg-[#67159C] focus:text-white text-white">Madrid</SelectItem>
+                        <SelectItem value="Paris" className="cursor-pointer focus:bg-[#67159C] focus:text-white text-white">Paris</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
@@ -87,7 +87,6 @@ const PersonalDetailsForm: React.FC<PersonalDetailsFormProps> = ({ managerData, 
                     <SelectContent className="bg-[#19181F]">
                         <SelectItem value="male" className="cursor-pointer focus:bg-[#67159C] focus:text-white text-white">Male</SelectItem>
                         <SelectItem value="female" className="cursor-pointer focus:bg-[#67159C] focus:text-white text-white">Female</SelectItem>
-                        <SelectItem value="other" className="cursor-pointer focus:bg-[#67159C] focus:text-white text-white">Other</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
