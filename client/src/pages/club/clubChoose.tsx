@@ -42,8 +42,11 @@ const ChooseClub: React.FC = () => {
           </Link>
           <h1 className="text-xl font-bold uppercase">Create Career Game</h1>
         </div>
-        <Link to={"/club/create/manager"}>
-          <Button className="bg-[#1E1E26] uppercase cursor-pointer hover:bg-[#67159C]">
+        <Link to={selectedClub ? "/club/create/manager" : "#"}>
+          <Button
+            className={`bg-[#1E1E26] uppercase cursor-pointer hover:bg-[#67159C] ${!selectedClub ? "opacity-50 cursor-not-allowed" : ""}`}
+            disabled={!selectedClub}
+          >
             Continue <ChevronsRight />
           </Button>
         </Link>
