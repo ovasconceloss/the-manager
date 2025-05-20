@@ -2,8 +2,8 @@ import { Manager } from "../types/manager";
 import DatabaseSystem from "../config/database";
 
 class ManagerModel {
-    static async insertManager(manager: Manager) {
-        const databaseInstance = DatabaseSystem.connectDatabase("load", "filename");
+    static async insertManager(manager: Manager, saveFileName: string) {
+        const databaseInstance = DatabaseSystem.connectDatabase("load", saveFileName);
         const sql = `
             INSERT INTO coach (first_name, last_name, birth_date, matches, wins, draws, losses, nation_id)
             VALUES (?, ?, ?, ?, ?, ?, ?, (SELECT id FROM nation WHERE code = ?))
