@@ -75,6 +75,7 @@ const PersonalDetailsForm: React.FC<PersonalDetailsFormProps> = ({ managerData, 
                     type="date"
                     className="bg-[#1E1E26] border border-[#2A2A35]"
                     value={managerData.personalDetails.dateOfBirth}
+                            max={"1990-12-31"}
                     onChange={(e) => handlePersonalDetailsChange("dateOfBirth", e.target.value)}
                 />
             </div>
