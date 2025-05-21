@@ -10,6 +10,17 @@ const StaticController = {
             console.error(error);
             return reply.status(500).send({ error: "Failed to retrieve data" });
         }
+    },
+
+    async createSaveDatabase(request: FastifyRequest<{ Body: { saveConfirm: boolean } }>, reply: FastifyReply) {
+        try {
+            if (request.body.saveConfirm) {
+                return reply.status(201).send({ message: "Save database created" });
+            }
+        } catch (error) {
+            console.error(error);
+            return reply.status(500).send({ error: "Failed to create a new save" });
+        }
     }
 }
 
