@@ -15,6 +15,7 @@ const StaticController = {
     async createSaveDatabase(request: FastifyRequest<{ Body: { saveConfirm: boolean } }>, reply: FastifyReply) {
         try {
             if (request.body.saveConfirm) {
+                await StaticService.createSaveDatabase();
                 return reply.status(201).send({ message: "Save database created" });
             }
         } catch (error) {
