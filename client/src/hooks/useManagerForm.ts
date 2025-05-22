@@ -1,3 +1,4 @@
+import { createSaveDatabase } from "@/services/api/staticRoutes";
 import { useState } from "react";
 
 const useManagerForm = () => {
@@ -47,6 +48,7 @@ const useManagerForm = () => {
     console.log("Manager Data:", managerData);
     localStorage.setItem("managerData", JSON.stringify(managerData));
     alert("Manager created successfully!");
+    createSaveDatabase();
   };
 
   const isFormComplete = (tab: string) => {
