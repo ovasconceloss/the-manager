@@ -1,0 +1,25 @@
+{
+  "name": "the-manager-backend",
+  "version": "1.0.0",
+  "description": "A football management game (server side)",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx --watch src/index.ts"
+  },
+  "keywords": [
+    "Node",
+    "Typescript",
+    "Fastify",
+    "SQLite"
+  ],
+  "author": "Victor Vasconcelos",
+  "license": "GPL-3.0-only",
+  "packageManager": "pnpm@10.11.0",
+  "devDependencies": {
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@types/node": "^22.15.22"
+  }
+}
