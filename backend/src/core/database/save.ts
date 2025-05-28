@@ -41,6 +41,11 @@ class SaveSystem {
 
         return fullPath;
     }
+
+    static getSaveDirectory(): string {
+        const userDocumentsPath = process.env.DOCUMENTS || path.join(os.homedir(), 'Documents');
+        return path.resolve(userDocumentsPath, "ProPlay Games", "The Manager 2025", "games");
+    }
 }
 
 export default SaveSystem;
