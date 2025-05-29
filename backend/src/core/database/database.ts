@@ -28,8 +28,6 @@ class DatabaseSystem {
         const databasePath = SaveSystem.createNewSavePath();
         const database = new Database(databasePath);
 
-        this.executeMigrations(database);
-
         return database;
     }
 
