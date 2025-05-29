@@ -4,7 +4,8 @@
   "description": "A football management game (server side)",
   "main": "index.js",
   "scripts": {
-    "start": "tsx --watch src/index.ts"
+    "start": "tsx --watch src/index.ts",
+    "seed": "tsx src/scripts/databaseSeed.ts"
   },
   "keywords": [
     "Node",
@@ -16,6 +17,7 @@
   "license": "GPL-3.0-only",
   "packageManager": "pnpm@10.11.0",
   "devDependencies": {
+    "@faker-js/faker": "^9.8.0",
     "@types/better-sqlite3": "^7.6.13",
     "better-sqlite3": "^11.10.0",
     "tsx": "^4.19.4",
