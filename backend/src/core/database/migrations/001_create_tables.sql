@@ -63,6 +63,7 @@ CREATE TABLE `staff_nation` (
 
 CREATE TABLE `player` (
     `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    `nation_id` INTEGER NOT NULL,
     `first_name` VARCHAR(255) NOT NULL,
     `birth_date` DATE NOT NULL,
     `last_name` VARCHAR(255) NOT NULL,
@@ -81,14 +82,6 @@ CREATE TABLE `player_contract` (
     `salary` FLOAT(53) NOT NULL,
     FOREIGN KEY (`player_id`) REFERENCES `player`(`id`),
     FOREIGN KEY (`club_id`) REFERENCES `club`(`id`)
-);
-
-CREATE TABLE `player_nation` (
-    `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    `player_id` INT NOT NULL,
-    `nation_id` INT NOT NULL,
-    FOREIGN KEY (`player_id`) REFERENCES `player`(`id`),
-    FOREIGN KEY (`nation_id`) REFERENCES `nation`(`id`)
 );
 
 CREATE TABLE `match` (
