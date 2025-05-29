@@ -3,6 +3,10 @@ import fs from "fs";
 import path from "path";
 
 class SaveSystem {
+    private static getDefaultDatabasePath = () => {
+        return path.resolve(__dirname, "./default/default.tm");
+    }
+
     private static basePath(): string {
         const documents = process.env.DOCUMENTS || path.join(os.homedir(), "Documents");
         return path.resolve(documents, "ProPlay Games", "The Manager 2025", "games");
@@ -29,6 +33,8 @@ class SaveSystem {
 
         if (!fs.existsSync(directory))
             fs.mkdirSync(directory, { recursive: true });
+
+        fs.copyFileSync(this.getDefaultDatabasePath(), fullPath);
 
         return fullPath;
     }
