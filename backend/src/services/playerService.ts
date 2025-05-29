@@ -8,6 +8,10 @@ class PlayerService {
     static async fetchPlayerByName(playerName: string) {
         return PlayerModel.getPlayerByName(playerName);
     }
+
+    static async fetchPlayerByClub(clubId: number) {
+        return PlayerModel.getPlayerByClub(clubId);
+    }
 }
 
 export default PlayerService;
