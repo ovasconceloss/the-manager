@@ -44,6 +44,26 @@ class PlayerModel {
         const queryNameLike = `%${playerName}%`;
         return databaseInstance.prepare(sql).get(queryNameLike, queryNameLike, queryNameLike);
     }
+
+    static async getPlayerByClub(clubId: number) {
+        const databaseInstance = SessionSystem.getDatabase();
+
+        const sql = `
+            SELECT
+                player.*,
+                player_contract.*,
+                club.*,
+                nation.id as nation_id,
+                nation.name as nationality
+            FROM player
+            LEFT JOIN player_contract ON player_contract.player_id = player.id
+            LEFT JOIN club ON club.id = player_contract.club_id
+            LEFT JOIN nation ON nation.id = player.nation_id
+            WHERE player_contract.club_id = ?
+        `;
+
+        return databaseInstance.prepare(sql).get(clubId);
+    }
 }
 
 export default PlayerModel;
