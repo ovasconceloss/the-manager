@@ -1,6 +1,7 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
 import saveRoutes from "./routes/saveRoutes";
+import seasonRoutes from "./routes/seasonRoutes";
 import { errorHandlerPlugin } from "./plugins/error-handler";
 
 const fastify = Fastify({ logger: true });
@@ -15,5 +16,6 @@ fastify.register(cors, {
 });
 
 fastify.register(saveRoutes);
+fastify.register(seasonRoutes);
 
 export default fastify;
