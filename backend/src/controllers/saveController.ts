@@ -5,7 +5,7 @@ import SessionSystem from "../core/session/session";
 import { FastifyReply, FastifyRequest } from "fastify";
 
 class SaveController {
-    static list(request: FastifyRequest, reply: FastifyReply) {
+    static async list(request: FastifyRequest, reply: FastifyReply) {
         const savesDirectory = SaveSystem.getSaveDirectory();
 
         try {
@@ -16,7 +16,7 @@ class SaveController {
         }
     }
 
-    static create(request: FastifyRequest, reply: FastifyReply) {
+    static async create(request: FastifyRequest, reply: FastifyReply) {
         try {
             SessionSystem.newGame();
             return reply.status(201).send({ message: "New save created successfully." });
@@ -25,7 +25,7 @@ class SaveController {
         }
     }
 
-    static load(request: FastifyRequest<{ Body: { filename: string } }>, reply: FastifyReply) {
+    static async load(request: FastifyRequest<{ Body: { filename: string } }>, reply: FastifyReply) {
         const { filename } = request.body;
 
         if (!filename || typeof filename !== "string")
@@ -39,7 +39,7 @@ class SaveController {
         }
     }
 
-    static delete(request: FastifyRequest<{ Params: { filename: string } }>, reply: FastifyReply) {
+    static async delete(request: FastifyRequest<{ Params: { filename: string } }>, reply: FastifyReply) {
         const { filename } = request.params;
 
         const savesDirectory = SaveSystem.getSaveDirectory();
