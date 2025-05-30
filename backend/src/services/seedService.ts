@@ -40,7 +40,7 @@ class SeedService {
         return staffId;
     }
 
-    static seedPlayers(playerStatement: any, contractStatement: any, playerNationStatement: any, faker: any, clubId: any, nationId: any) {
+    static seedPlayers(playerStatement: any, contractStatement: any, faker: any, clubId: any, nationId: any) {
         const playerPositions = [
             ...expandPositions("GK", 2),
             ...expandPositions("DEF", 8),
@@ -62,6 +62,7 @@ class SeedService {
             const playerMarketValue = parseFloat((randomValues(500000, 10000000) / 100).toFixed(2));
 
             const information = playerStatement.run(
+                nationId,
                 playerFirstName,
                 playerLastName,
                 playerBirthDate.toISOString(),
@@ -73,7 +74,6 @@ class SeedService {
             const playerId = information.lastInsertRowid;
 
             contractStatement.run(playerId, clubId, "2025-07-01", "2029-06-30", randomValues(3000, 15000));
-            playerNationStatement.run(playerId, nationId);
         }
     }
 }
