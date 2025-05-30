@@ -5,6 +5,7 @@ const startServer = async () => {
         await fastify.listen({ port: 8080 });
         fastify.log.info(`Server running on port 8080`);
     } catch (err) {
+        console.error('Failed to initialize the server:', err);
         fastify.log.error(`Failed to initialize the server: `, err);
         process.exit(1);
     }
