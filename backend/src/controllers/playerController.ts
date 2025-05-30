@@ -24,14 +24,14 @@ class PlayerController {
         }
     }
 
-    static async getPlayerByClub(request: FastifyRequest<{ Params: { playerName: string } }>, reply: FastifyReply) {
-        const playerName = request.params.playerName;
+    static async getPlayerByClub(request: FastifyRequest<{ Params: { clubId: number } }>, reply: FastifyReply) {
+        const clubId = request.params.clubId;
 
         try {
-            const player = await PlayerService.fetchPlayerByName(playerName);
+            const player = await PlayerService.fetchPlayerByClub(clubId);
             return reply.status(200).send({ player: player });
-        } catch (err) {
-            return reply.status(500).send({ error: err, message: "Failed to retrieve data from player" });
+        } catch (err: any) {
+            return reply.status(500).send({ error: err.message, message: "Failed to retrieve data from player" });
         }
     }
 }
