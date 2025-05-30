@@ -2,6 +2,7 @@ import Fastify from "fastify";
 import cors from "@fastify/cors";
 import saveRoutes from "./routes/saveRoutes";
 import clubRoutes from "./routes/clubRoutes";
+import playerRoutes from "./routes/playerRoutes";
 import leagueRoutes from "./routes/leagueRoutes";
 import seasonRoutes from "./routes/seasonRoutes";
 import { errorHandlerPlugin } from "./plugins/error-handler";
@@ -19,6 +20,7 @@ fastify.register(cors, {
 
 fastify.register(saveRoutes);
 fastify.register(clubRoutes);
+fastify.register(playerRoutes);
 fastify.register(seasonRoutes);
 fastify.register(leagueRoutes);
 
