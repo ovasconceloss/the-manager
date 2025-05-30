@@ -1,6 +1,5 @@
-import { NATIONS } from "../data/nations";
 import { LEAGUE_NAMES_BY_NATION } from "../data/leagues";
-import { expandPositions, getFakerByNation, randomValues } from "../utils/utils";
+import { expandPositions, randomValues } from "../utils/utils";
 
 class SeedService {
     static seedNation(statement: any, nation: any) {
@@ -41,7 +40,7 @@ class SeedService {
         return staffId;
     }
 
-    static seedPlayers(playerStatement: any, contractStatement: any, localFaker: any, clubId: any, localNationId: any) {
+    static seedPlayers(playerStatement: any, contractStatement: any, faker: any, clubId: any, nationId: any) {
         const playerPositions = [
             ...expandPositions("GK", 2),
             ...expandPositions("DEF", 8),
@@ -54,28 +53,7 @@ class SeedService {
             [playerPositions[i], playerPositions[j]] = [playerPositions[j], playerPositions[i]];
         }
 
-        const totalPlayers = playerPositions.length;
-        const localPlayers = Math.floor(totalPlayers * 0.6);
-
-        const foreignNations = NATIONS.filter(nation => nation.id !== localNationId);
-
-        for (let i = 0; i < totalPlayers; i++) {
-            let faker: any;
-            let nationId: number;
-
-            const position = playerPositions[i];
-
-
-            if (i < localPlayers) {
-                faker = localFaker;
-                nationId = localNationId;
-            } else {
-                const randomNation = foreignNations[Math.floor(Math.random() * foreignNations.length)];
-
-                nationId = randomNation.id;
-                faker = getFakerByNation(randomNation.name);
-            }
-
+        for (const playerPosition of playerPositions) {
             const playerFirstName = faker.person.firstName("male");
             const playerLastName = faker.person.lastName("male");
             const playerBirthDate = faker.date.birthdate({ mode: "year", min: 1995, max: 2005 });
@@ -88,12 +66,11 @@ class SeedService {
                 playerFirstName,
                 playerLastName,
                 playerBirthDate.toISOString(),
-                position,
+                playerPosition,
                 playerOverall,
                 playerPotential,
                 playerMarketValue
             );
-
             const playerId = information.lastInsertRowid;
 
             contractStatement.run(playerId, clubId, "2025-07-01", "2029-06-30", randomValues(3000, 15000));
