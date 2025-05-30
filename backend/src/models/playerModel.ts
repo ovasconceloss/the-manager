@@ -62,7 +62,7 @@ class PlayerModel {
             WHERE player_contract.club_id = ?
         `;
 
-        return databaseInstance.prepare(sql).get(clubId);
+        return databaseInstance.prepare(sql).all(clubId);
     }
 }
 
