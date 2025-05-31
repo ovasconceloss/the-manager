@@ -123,3 +123,10 @@ CREATE TABLE `finance` (
     `date` DATE NOT NULL,
     FOREIGN KEY (`club_id`) REFERENCES `club`(`id`)
 );
+
+CREATE TABLE `game_state` (
+    `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+    `current_date` DATE NOT NULL,
+    `season_id` INTEGER NOT NULL,
+    FOREIGN KEY (`season_id`) REFERENCES `season`(`id`)
+);
