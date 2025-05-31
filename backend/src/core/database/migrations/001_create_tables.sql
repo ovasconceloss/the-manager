@@ -126,7 +126,7 @@ CREATE TABLE `finance` (
 
 CREATE TABLE `game_state` (
     `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-    `current_date` DATE NOT NULL,
+    `current_date` TEXT NOT NULL,
     `season_id` INTEGER NOT NULL,
     FOREIGN KEY (`season_id`) REFERENCES `season`(`id`)
 );
