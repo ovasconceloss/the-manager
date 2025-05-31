@@ -9,7 +9,7 @@ class LeagueModel {
                 league.id,
                 league.name,
                 league.nation_id,
-                league.reputation
+                league.reputation,
                 nation.id,
                 nation.name as nation_name
             FROM league
