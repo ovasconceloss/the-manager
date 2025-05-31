@@ -19,6 +19,15 @@ class SeasonController {
             return reply.status(500).send({ error: err, message: "Failed to insert the new season." });
         }
     }
+
+    static async advanceDay(request: FastifyRequest, reply: FastifyReply) {
+        try {
+            SeasonService.advanceDay();
+            return reply.status(201).send({ message: "Day successfully completed" });
+        } catch (err) {
+            return reply.status(500).send({ error: err, message: "Failure to advance the day" });
+        }
+    }
 }
 
 export default SeasonController;
